@@ -5,25 +5,27 @@ import javax.swing.JButton;
 
 public class Button extends JButton implements MouseListener{
 	//private Color color1 = Color.WHITE, color2 = Color.LIGHT_GRAY;
-	public static final Color VERY_LIGHT_GREEN = new Color(102,255,102);
-	public static  final Color LIGHT_GREEN = new Color(0,255,51);
-	public static final Color GREEN = new Color(0,204,0);
-	public static final Color DARK_GREEN = new Color(0,102,0);
-	public static final Color YELLOW = new Color(255,255,0);
+	private static final Color VERY_LIGHT_GREEN = new Color(102,255,102);
+	private static  final Color LIGHT_GREEN = new Color(0,255,51);
+	private static final Color GREEN = new Color(0,204,0);
+	private static final Color DARK_GREEN = new Color(0,102,0);
+	private static final Color YELLOW = new Color(255,255,0);
 	private String name;
-	public Color RGB_Color1 = VERY_LIGHT_GREEN;
-	public Color RGB_Color2 = DARK_GREEN;
+	private Color color1;
+	private Color color2;
 
-	public Button(String name){
+	public Button(String name, Color color1, Color color2){
 		super(name);
 		this.name = name;
+		this.color1 = color1;
+		this.color2 = color2;
 		this.setPreferredSize(new Dimension(65,53));
 		this.addMouseListener(this);
 	}
 
 	public void paintComponent(Graphics g){
 		Graphics2D g2d = (Graphics2D)g;
-		GradientPaint gp = new GradientPaint(0, 0, RGB_Color1, 0, this.getHeight()/2, RGB_Color2, false);
+		GradientPaint gp = new GradientPaint(0, 0, color1, 0, this.getHeight()/2, color2, false);
 		g2d.setPaint(gp);
 		g2d.fillRect(0, 0, this.getWidth(), this.getHeight());
 		FontMetrics fm = g2d.getFontMetrics();
@@ -35,8 +37,8 @@ public class Button extends JButton implements MouseListener{
 	}
 	
 	public void setColors(Color RGB_Color1, Color RGB_Color2){
-		this.RGB_Color1 = RGB_Color1;
-		this.RGB_Color2 = RGB_Color2;
+		this.color1 = RGB_Color1;
+		this.color2 = RGB_Color2;
 	}
 	
 	public void mouseClicked(MouseEvent e) { }
